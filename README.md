@@ -2,9 +2,15 @@
 
 Go 进程内指标 SDK，依据 [技术设计](docs/metrics-sdk-technical-design.md) 实现核心采集与读取。默认采集 Go Runtime 和当前进程，支持业务 Collector、统一身份标签、独立快照、文本编码及自监控。SDK 不启动 HTTP 服务、后台周期任务或网络连接。
 
-当前不包含 Pushgateway 推送、cgroup/宿主机采集或部署看板。Go 版本为 1.25，使用 `prometheus/client_golang` v1.23.2。Module 路径为 `github.com/zgsm-sangfor/costrict-common-metrics`，Go 包名为 `metrics`。
+当前不包含 Pushgateway 推送、cgroup/宿主机采集或部署看板。Go 版本为 1.25，使用 `prometheus/client_golang` v1.23.2。Module 路径为 `github.com/dengbinbox/costrict-common-metrics`，Go 包名为 `metrics`。
 
 ## 使用
+
+在接入应用的 module 目录中安装指定版本：
+
+```sh
+go get github.com/dengbinbox/costrict-common-metrics@v0.0.1
+```
 
 完整接入步骤、配置项、错误处理及关闭流程见 [SDK 使用文档](docs/metrics-sdk-usage.md)。
 
@@ -43,7 +49,7 @@ if gatherErr != nil {
 return metrics.Encode(w, families, metrics.PrometheusText)
 ```
 
-上例需导入 `context`、`log`、`metrics "github.com/zgsm-sangfor/costrict-common-metrics"` 和 `github.com/prometheus/client_golang/prometheus`；`w` 为调用方管理的 `io.Writer`。可运行的完整示例：
+上例需导入 `context`、`log`、`metrics "github.com/dengbinbox/costrict-common-metrics"` 和 `github.com/prometheus/client_golang/prometheus`；`w` 为调用方管理的 `io.Writer`。可运行的完整示例：
 
 ```sh
 go run ./examples/read

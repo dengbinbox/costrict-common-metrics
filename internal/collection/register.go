@@ -8,7 +8,7 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 	dto "github.com/prometheus/client_model/go"
-	"github.com/zgsm-sangfor/costrict-common-metrics/internal/identity"
+	"github.com/dengbinbox/costrict-common-metrics/internal/identity"
 )
 
 // Register 校验描述符并注册业务 Collector，不接受 unchecked collector。

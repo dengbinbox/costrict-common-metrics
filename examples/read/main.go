@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/prometheus/client_golang/prometheus"
-	metrics "github.com/zgsm-sangfor/costrict-common-metrics"
+	metrics "github.com/dengbinbox/costrict-common-metrics"
 )
 
 // run 返回后 defer 已执行，再由 main 决定是否以错误状态退出。

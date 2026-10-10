@@ -11,7 +11,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/collectors"
 	dto "github.com/prometheus/client_model/go"
-	metrics "github.com/zgsm-sangfor/costrict-common-metrics"
+	metrics "github.com/dengbinbox/costrict-common-metrics"
 	"google.golang.org/protobuf/proto"
 )
 

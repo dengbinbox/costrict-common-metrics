@@ -10,7 +10,7 @@ import (
 )
 
 func buildVersion() string {
-	const module = "github.com/zgsm-sangfor/costrict-common-metrics"
+	const module = "github.com/dengbinbox/costrict-common-metrics"
 	if info, ok := debug.ReadBuildInfo(); ok {
 		if info.Main.Path == module && info.Main.Version != "" {
 			return info.Main.Version

@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	metrics "github.com/zgsm-sangfor/costrict-common-metrics"
+	metrics "github.com/dengbinbox/costrict-common-metrics"
 )
 
 // 将退出码处理放在最外层，保证 run 中的 defer 先完成资源清理。

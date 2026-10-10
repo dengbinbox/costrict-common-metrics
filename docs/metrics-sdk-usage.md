@@ -7,31 +7,31 @@
 要求 Go 1.25 或更新版本。Module 路径与导入方式为：
 
 ```go
-import metrics "github.com/zgsm-sangfor/costrict-common-metrics"
+import metrics "github.com/dengbinbox/costrict-common-metrics"
 ```
 
 Go 包名为 `metrics`，与仓库名中的连字符无关。接入方使用根包公开 API，不直接导入 `internal` 包。
 
-### 仓库发布后引入
+### 引入发布版本
 
-在应用的 module 目录中执行以下命令，将 `VERSION` 替换为仓库实际发布的版本标签或提交哈希。这里不假定仓库已经上传或存在版本标签。
+在应用的 module 目录中执行以下命令，固定使用 `v0.0.1`。后续升级时显式选择新的版本标签。
 
 ```sh
-# 下载指定版本；VERSION 需换成实际版本标签或提交哈希。
-go get github.com/zgsm-sangfor/costrict-common-metrics@VERSION
+# 下载指定版本。
+go get github.com/dengbinbox/costrict-common-metrics@v0.0.1
 # 根据应用代码中的 import 整理依赖。
 go mod tidy
 ```
 
-### 上传前本地联调
+### 本地联调
 
 假设应用与 SDK 目录同级，在应用目录执行：
 
 ```sh
 # 在应用的 go.mod 中声明 SDK 依赖。
-go mod edit -require=github.com/zgsm-sangfor/costrict-common-metrics@v0.0.0
+go mod edit -require=github.com/dengbinbox/costrict-common-metrics@v0.0.0
 # 将该依赖指向本机 SDK 源码目录，便于修改后直接联调。
-go mod edit -replace=github.com/zgsm-sangfor/costrict-common-metrics=../costrict-common-metrics
+go mod edit -replace=github.com/dengbinbox/costrict-common-metrics=../costrict-common-metrics
 ```
 
 添加下方接入代码后执行 `go mod tidy`。其中 `v0.0.0` 仅为本地 replace 配套的版本占位，不代表已发布版本；SDK 代码从本地目录读取，第三方依赖仍需缓存或下载。路径不同则调整 replace 目标。
@@ -40,7 +40,7 @@ go mod edit -replace=github.com/zgsm-sangfor/costrict-common-metrics=../costrict
 
 ```sh
 # 取消本地源码替换，让后续 go get 使用远端版本。
-go mod edit -dropreplace=github.com/zgsm-sangfor/costrict-common-metrics
+go mod edit -dropreplace=github.com/dengbinbox/costrict-common-metrics
 ```
 
 ## 2. 从初始化到读取：完整示例
@@ -59,7 +59,7 @@ import (
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
-	metrics "github.com/zgsm-sangfor/costrict-common-metrics"
+	metrics "github.com/dengbinbox/costrict-common-metrics"
 )
 
 func main() {

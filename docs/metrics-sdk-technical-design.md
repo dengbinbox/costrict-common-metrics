@@ -2,7 +2,7 @@
 
 版本：v2 设计提案（采集与读取优先）。依据：[通用 Go Metrics SDK 设计讨论稿](./metrics-sdk-discussion.md)。
 
-本文将讨论稿收敛为可实施的接口、运行契约和监控接入方案。当前已实现核心 SDK、直接读取及 HTTP 拉取示例；推送与配套部署产物仍属于设计目标，不代表已发布能力。Go module 路径为 `github.com/zgsm-sangfor/costrict-common-metrics`，实际接入说明见 [SDK 使用文档](./metrics-sdk-usage.md)。
+本文将讨论稿收敛为可实施的接口、运行契约和监控接入方案。当前已实现核心 SDK、直接读取及 HTTP 拉取示例；推送与配套部署产物仍属于设计目标，不代表已发布能力。Go module 路径为 `github.com/dengbinbox/costrict-common-metrics`，实际接入说明见 [SDK 使用文档](./metrics-sdk-usage.md)。
 
 ## 1. 目标、范围与设计决策
 
@@ -170,11 +170,11 @@ SDK 不读取 Accept Header，也不设置 HTTP 状态码。接入方可用 `pro
 代码上传并发布版本后，使用以下 module 地址引入；将 `<发布版本>` 替换为实际版本标签：
 
 ```bash
-go get github.com/zgsm-sangfor/costrict-common-metrics@<发布版本>
+go get github.com/dengbinbox/costrict-common-metrics@<发布版本>
 go mod tidy
 ```
 
-本地联调可在调用方 `go.mod` 增加 `replace github.com/zgsm-sangfor/costrict-common-metrics => ../costrict-common-metrics`。尚未上传仓库或发布版本时，可通过此方式联调，无需从远端下载 SDK。
+本地联调可在调用方 `go.mod` 增加 `replace github.com/dengbinbox/costrict-common-metrics => ../costrict-common-metrics`。尚未上传仓库或发布版本时，可通过此方式联调，无需从远端下载 SDK。
 
 ### 4.2 最小拉取接入：业务自己管理 HTTP
 
@@ -193,7 +193,7 @@ import (
 	"syscall"
 	"time"
 
-	metrics "github.com/zgsm-sangfor/costrict-common-metrics"
+	metrics "github.com/dengbinbox/costrict-common-metrics"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )

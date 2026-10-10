@@ -10,8 +10,8 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 	dto "github.com/prometheus/client_model/go"
-	"github.com/zgsm-sangfor/costrict-common-metrics/internal/collection"
-	"github.com/zgsm-sangfor/costrict-common-metrics/internal/identity"
+	"github.com/dengbinbox/costrict-common-metrics/internal/collection"
+	"github.com/dengbinbox/costrict-common-metrics/internal/identity"
 )
 
 var (

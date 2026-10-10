@@ -1,4 +1,4 @@
-module github.com/zgsm-sangfor/costrict-common-metrics
+module github.com/dengbinbox/costrict-common-metrics
 
 go 1.25.0
 
