@@ -1,0 +1,11 @@
+apiVersion: 1
+providers:
+  - name: metrics-sdk-demo
+    orgId: 1
+    folder: Metrics SDK Demo
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: false
+    options:
+      path: /etc/grafana/dashboards

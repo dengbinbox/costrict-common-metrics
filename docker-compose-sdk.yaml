@@ -1,0 +1,31 @@
+# 独立项目，只管理真实 Go SDK 示例；复用 base 栈的 Prometheus 网络。
+name: costrict-metrics-sdk
+
+services:
+  sdk-example:
+    image: costrict-metrics-pull:local
+    build:
+      context: .
+      dockerfile: examples/pull/Dockerfile
+      args:
+        GOPROXY: "${GOPROXY:-https://proxy.golang.org,direct}"
+    environment:
+      METRICS_LISTEN_ADDR: ":9091"
+      METRICS_INSTANCE_NAME: "sdk-docker-example"
+    ports:
+      # 独立宿主机端口，不占用现有 8888 / 9090 / 3000。
+      - "19091:9091"
+    networks:
+      - metrics-demo
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 20s
+    restart: unless-stopped
+
+networks:
+  metrics-demo:
+    external: true
+    name: costrict-metrics-demo_default

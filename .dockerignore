@@ -1,0 +1,9 @@
+.git
+.agents
+.codex
+.aws
+data
+compose
+docs
+*.md
+docker-compose*.yaml

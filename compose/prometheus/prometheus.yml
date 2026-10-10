@@ -1,0 +1,39 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  # 真实 Go SDK 示例，与 Python 模拟数据使用不同 job 和 app。
+  # 使用容器服务名和内部端口，宿主机 19091 仅用于人工访问。
+  - job_name: metrics-sdk-real
+    metrics_path: /internal/metrics
+    scrape_timeout: 3s
+    static_configs:
+      - targets: ['sdk-example:9091']
+
+  - job_name: metrics-sdk-demo
+    scrape_timeout: 3s
+    static_configs:
+      - targets: ['simulator:8888']
+        labels:
+          demo_worker: worker-a
+      - targets: ['simulator:8888']
+        labels:
+          demo_worker: worker-b
+      - targets: ['simulator:8888']
+        labels:
+          demo_worker: worker-c
+    relabel_configs:
+      - source_labels: [demo_worker]
+        target_label: __metrics_path__
+        replacement: /metrics/$1
+      - source_labels: [demo_worker]
+        target_label: instance
+      - action: labeldrop
+        regex: demo_worker
+
+  - job_name: metrics-container-real
+    metrics_path: /metrics/real
+    scrape_timeout: 3s
+    static_configs:
+      - targets: ['simulator:8888']
