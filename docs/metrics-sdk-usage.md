@@ -4,7 +4,7 @@
 
 本 SDK 是嵌入 Go 应用的库，支持 Go Runtime、当前进程和业务指标采集，以及结构化读取、Prometheus/OpenMetrics 文本编码。SDK 使用独立 Registry，不启动 HTTP 服务或周期采样任务。当前未实现推送、容器 cgroup 或宿主机资源采集。
 
-要求 Go 1.25 或更新版本。Module 路径与导入方式为：
+当前 main 要求 Go 1.24.7 或更新版本；已发布的 `v0.0.1` 仍要求 Go 1.25。Module 路径与导入方式为：
 
 ```go
 import metrics "github.com/dengbinbox/costrict-common-metrics"
@@ -12,13 +12,13 @@ import metrics "github.com/dengbinbox/costrict-common-metrics"
 
 Go 包名为 `metrics`，与仓库名中的连字符无关。接入方使用根包公开 API，不直接导入 `internal` 包。
 
-### 引入发布版本
+### 引入当前版本
 
-在应用的 module 目录中执行以下命令，固定使用 `v0.0.1`。后续升级时显式选择新的版本标签。
+降低最低 Go 版本的修改尚未发布新标签。在应用的 module 目录中执行以下命令，Go 会把 main 当前提交解析为伪版本并固定到 `go.mod`；后续构建不会自动跟随 main。新版本标签发布后，建议显式切换到该标签。
 
 ```sh
-# 下载指定版本。
-go get github.com/dengbinbox/costrict-common-metrics@v0.0.1
+# 下载当前 main 并记录对应伪版本。
+go get github.com/dengbinbox/costrict-common-metrics@main
 # 根据应用代码中的 import 整理依赖。
 go mod tidy
 ```

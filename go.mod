@@ -1,6 +1,6 @@
 module github.com/dengbinbox/costrict-common-metrics
 
-go 1.25.0
+go 1.24.7
 
 require (
 	github.com/prometheus/client_golang v1.23.2

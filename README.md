@@ -2,15 +2,17 @@
 
 Go 进程内指标 SDK，依据 [技术设计](docs/metrics-sdk-technical-design.md) 实现核心采集与读取。默认采集 Go Runtime 和当前进程，支持业务 Collector、统一身份标签、独立快照、文本编码及自监控。SDK 不启动 HTTP 服务、后台周期任务或网络连接。
 
-当前不包含 Pushgateway 推送、cgroup/宿主机采集或部署看板。Go 版本为 1.25，使用 `prometheus/client_golang` v1.23.2。Module 路径为 `github.com/dengbinbox/costrict-common-metrics`，Go 包名为 `metrics`。
+当前不包含 Pushgateway 推送、cgroup/宿主机采集或部署看板。最低 Go 版本为 1.24.7，使用 `prometheus/client_golang` v1.23.2。Module 路径为 `github.com/dengbinbox/costrict-common-metrics`，Go 包名为 `metrics`。
 
 ## 使用
 
-在接入应用的 module 目录中安装指定版本：
+在接入应用的 module 目录中安装当前支持 Go 1.24.7 的版本：
 
 ```sh
-go get github.com/dengbinbox/costrict-common-metrics@v0.0.1
+go get github.com/dengbinbox/costrict-common-metrics@main
 ```
+
+`go get @main` 会将当前提交解析为伪版本并记录到接入方的 `go.mod`，不会在每次构建时自动跟随 main。已发布的 `v0.0.1` 仍要求 Go 1.25；降低最低 Go 版本的修改尚未发布新标签。
 
 完整接入步骤、配置项、错误处理及关闭流程见 [SDK 使用文档](docs/metrics-sdk-usage.md)。
 

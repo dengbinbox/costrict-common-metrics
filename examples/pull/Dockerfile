@@ -1,5 +1,5 @@
 # 在构建阶段编译实际 SDK 示例；依赖单独复制以复用构建缓存。
-FROM golang:1.25.8 AS builder
+FROM golang:1.24.7 AS builder
 ARG GOPROXY=https://proxy.golang.org,direct
 ENV GOPROXY=${GOPROXY}
 WORKDIR /src
